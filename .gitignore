@@ -1,0 +1,7 @@
+vendor
+.idea
+.env
+composer.lock
+.phpunit.result.cache
+tests/database.sqlite
+.tool-versions

@@ -1,0 +1,61 @@
+{
+    "name": "a2insights/octo-billing",
+    "description": "This is a part of octo system",
+    "keywords": [
+        "laravel",
+        "php",
+        "octo",
+        "billing",
+        "sass"
+    ],
+    "minimum-stability": "dev",
+    "homepage": "https://github.com/a2insights/octo-billing",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Atila Silva",
+            "email": "atila.danvi@outlook.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "doctrine/dbal": "3.3",
+        "illuminate/support": "^8.80",
+        "laravel/cashier": "^13.0",
+        "livewire/livewire": "^2.7"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "suggest": {
+        "doctrine/dbal": "Required by Cashier to modify tables in the database.",
+        "laravel/cashier": "Required to use with the Stripe scaffolding."
+    },
+    "autoload": {
+        "psr-4": {
+            "OctoBilling\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OctoBilling\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OctoBilling\\OctoBillingServiceProvider"
+            ]
+        }
+    }
+}
