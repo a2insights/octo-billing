@@ -15,15 +15,16 @@ class OctoBillingServiceProvider extends ServiceProvider
             __DIR__.'/../config/octo-billing.php' => config_path('octo-billing.php'),
         ], 'octo-billing-config');
 
-
         $this->loadRoutesFrom(__DIR__.'/../routes/octo-billing.php');
 
         Cashier::useSubscriptionModel(\OctoBilling\Models\Subscription::class);
 
-        Billing::dontProrateOnSwap();
+        if (config('octo-billing.dont_prorate_on_swap')) {
+            Billing::dontProrateOnSwap();
+        }
 
         Billing::handleSubscriptionsUsing(HandleSubscriptions::class);
 
-        Saas::currency('BRL');
+        Saas::currency(config('octo-billing.currency'));
     }
 }
