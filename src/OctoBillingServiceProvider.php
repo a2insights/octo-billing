@@ -19,12 +19,12 @@ class OctoBillingServiceProvider extends ServiceProvider
 
         Cashier::useSubscriptionModel(\OctoBilling\Models\Subscription::class);
 
-        if (config('octo-billing.dont_prorate_on_swap')) {
+        if (config('octo-billing.dont_prorate_on_swap', true)) {
             Billing::dontProrateOnSwap();
         }
 
         Billing::handleSubscriptionsUsing(HandleSubscriptions::class);
 
-        Saas::currency(config('octo-billing.currency'));
+        Saas::currency(config('octo-billing.currency', 'BRL'));
     }
 }
