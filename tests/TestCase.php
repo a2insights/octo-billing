@@ -5,7 +5,7 @@ namespace OctoBilling\Tests;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Cashier as StripeCashier;
 use OctoBilling\OctoBillingServiceProvider;
-use OctoBilling\Billing;
+use OctoBilling\OctoBilling;
 use OctoBilling\Saas;
 use Stripe\ApiResource;
 use Stripe\Exception\InvalidRequestException;
@@ -84,13 +84,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
                 Saas::feature('Seats', 'teams', 1770)->notResettable(),
             ]);
 
-        Billing::resolveBillable(function (Request $request) {
+        OctoBilling::resolveBillable(function (Request $request) {
             return $request->user();
         });
 
         StripeCashier::useCustomerModel(Models\User::class);
 
-        Billing::resolveAuthorization(function ($billable, Request $request) {
+        OctoBilling::resolveAuthorization(function ($billable, Request $request) {
             return true;
         });
     }
@@ -232,16 +232,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * Reset the database.
-     *
-     * @return void
-     */
-    /*    protected function resetDatabase()
-       {
-           file_put_contents(__DIR__.'/database.sqlite', null);
-       } */
-
-    /**
      * Create a new subscription.
      *
      * @param  \OctoBilling\Test\Models\Stripe\User  $user
@@ -269,26 +259,5 @@ class TestCase extends \Orchestra\Testbench\TestCase
         } catch (InvalidRequestException $e) {
             //
         }
-    }
-}
-
-namespace App\View\Components;
-
-use Illuminate\View\Component;
-
-class AppLayout extends Component
-{
-    /**
-     * Get the view / contents that represents the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        return <<<'blade'
-            <div>
-                {{ $slot }}
-            </div>
-        blade;
     }
 }

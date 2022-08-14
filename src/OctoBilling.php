@@ -2,7 +2,7 @@
 
 namespace OctoBilling;
 
-class Billing
+class OctoBilling
 {
     use Concerns\ResolvesActions;
     use Concerns\ResolvesAuthorization;
