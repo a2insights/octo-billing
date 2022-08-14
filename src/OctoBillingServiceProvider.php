@@ -18,6 +18,8 @@ class OctoBillingServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../routes/octo-billing.php');
 
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'octo-billing');
+
         Cashier::useSubscriptionModel(\OctoBilling\Models\Subscription::class);
 
         if (config('octo-billing.dont_prorate_on_swap', true)) {
