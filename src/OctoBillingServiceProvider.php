@@ -4,6 +4,7 @@ namespace OctoBilling;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
+use OctoBilling\Actions\HandleSubscriptions;
 use OctoBilling\OctoBilling;
 use OctoBilling\Saas;
 
