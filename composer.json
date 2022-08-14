@@ -22,7 +22,7 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "doctrine/dbal": "3.3",
+        "doctrine/dbal": "^3.3",
         "illuminate/support": "^8.80",
         "laravel/cashier": "^13.0",
         "livewire/livewire": "^2.7"
