@@ -1,11 +1,11 @@
 <?php
 
-namespace OctoBilling\Models;
+namespace Octo\Billing\Models;
 
 use Laravel\Cashier\Subscription as CashierSubscription;
-use OctoBilling\Concerns\HasPlans;
-use OctoBilling\Concerns\HasQuotas;
-use OctoBilling\Saas;
+use Octo\Billing\Concerns\HasPlans;
+use Octo\Billing\Concerns\HasQuotas;
+use Octo\Billing\Saas;
 
 class Subscription extends CashierSubscription
 {

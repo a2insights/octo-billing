@@ -1,14 +1,12 @@
 <?php
 
-namespace OctoBilling;
+namespace Octo\Billing;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
-use OctoBilling\Actions\HandleSubscriptions;
-use OctoBilling\OctoBilling;
-use OctoBilling\Saas;
+use Octo\Billing\Actions\HandleSubscriptions;
 
-class OctoBillingServiceProvider extends ServiceProvider
+class BillingServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -20,13 +18,13 @@ class OctoBillingServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'octo-billing');
 
-        Cashier::useSubscriptionModel(\OctoBilling\Models\Subscription::class);
+        Cashier::useSubscriptionModel(\Octo\Billing\Models\Subscription::class);
 
         if (config('octo-billing.dont_prorate_on_swap', true)) {
-            OctoBilling::dontProrateOnSwap();
+            Billing::dontProrateOnSwap();
         }
 
-        OctoBilling::handleSubscriptionsUsing(HandleSubscriptions::class);
+        Billing::handleSubscriptionsUsing(HandleSubscriptions::class);
 
         Saas::currency(config('octo-billing.currency', 'BRL'));
     }

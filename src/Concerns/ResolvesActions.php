@@ -1,8 +1,8 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
-use OctoBilling\Contracts\HandleSubscriptions;
+use Octo\Billing\Contracts\HandleSubscriptions;
 
 trait ResolvesActions
 {

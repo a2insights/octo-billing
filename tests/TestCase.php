@@ -1,12 +1,12 @@
 <?php
 
-namespace OctoBilling\Tests;
+namespace Octo\Billing\Tests;
 
 use Illuminate\Http\Request;
 use Laravel\Cashier\Cashier as StripeCashier;
-use OctoBilling\OctoBillingServiceProvider;
-use OctoBilling\OctoBilling;
-use OctoBilling\Saas;
+use Octo\Billing\BillingServiceProvider;
+use Octo\Billing\Billing;
+use Octo\Billing\Saas;
 use Stripe\ApiResource;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\Plan;
@@ -84,13 +84,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
                 Saas::feature('Seats', 'teams', 1770)->notResettable(),
             ]);
 
-        OctoBilling::resolveBillable(function (Request $request) {
+        Billing::resolveBillable(function (Request $request) {
             return $request->user();
         });
 
         StripeCashier::useCustomerModel(Models\User::class);
 
-        OctoBilling::resolveAuthorization(function ($billable, Request $request) {
+        Billing::resolveAuthorization(function ($billable, Request $request) {
             return true;
         });
     }
@@ -196,7 +196,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             \Laravel\Cashier\CashierServiceProvider::class,
-            OctoBillingServiceProvider::class,
+            BillingServiceProvider::class,
         ];
     }
 
@@ -207,7 +207,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::getEnvironmentSetUp($app);
 
-        $config = require __DIR__ . './../config/octo.php';
+        $config = require __DIR__ . './../config/octo-billing.php';
 
         $app['config']->set('octo', $config);
 
@@ -219,11 +219,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ]);
 
         $app['config']->set('app.key', 'wslxrEFGWY6GfGhvN9L3wH3KSRJQQpBD');
-        $app['config']->set('auth.providers.users.model', \OctoBilling\Tests\Models\User::class);
+        $app['config']->set('auth.providers.users.model', \Octo\Billing\Tests\Models\User::class);
 
         $app['config']->set('billing.middleware', [
             'web',
-            \OctoBilling\Http\Middleware\Authorize::class,
+            \Octo\Billing\Http\Middleware\Authorize::class,
         ]);
 
         $app['config']->set('cashier.webhook.secret', null);
@@ -234,9 +234,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Create a new subscription.
      *
-     * @param  \OctoBilling\Test\Models\Stripe\User  $user
-     * @param  \OctoBilling\Plan  $plan
-     * @return \OctoBilling\Models\Subscription
+     * @param  \Octo\Billing\Test\Models\Stripe\User  $user
+     * @param  \Octo\Billing\Plan  $plan
+     * @return \Octo\Billing\Models\Subscription
      */
     protected function createStripeSubscription($user, $plan)
     {

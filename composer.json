@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OctoBilling\\": "src"
+            "Octo\\Billing\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OctoBilling\\Tests\\": "tests"
+            "Octo\\Billing\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "OctoBilling\\OctoBillingServiceProvider"
+                "Octo\\Billing\\BillingServiceProvider"
             ]
         }
     }

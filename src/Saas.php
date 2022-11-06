@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling;
+namespace Octo\Billing;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +41,7 @@ class Saas
      * @param  string  $name
      * @param  string|int  $id
      * @param  string|int|null  $yearlyId
-     * @return \OctoBilling\Plan
+     * @return \Octo\Billing\Plan
      */
     public static function plan(string $name, $id, $yearlyId = null)
     {
@@ -58,7 +58,7 @@ class Saas
      * @param  string  $name
      * @param  string|int  $id
      * @param  int|float  $value
-     * @return \OctoBilling\Feature
+     * @return \Octo\Billing\Feature
      */
     public static function feature(string $name, $id, $value = 0, $model = null, $calcule = null)
     {
@@ -71,7 +71,7 @@ class Saas
      * @param  string  $name
      * @param  string|int  $id
      * @param  int|float  $value
-     * @return \OctoBilling\MeteredFeature
+     * @return \Octo\Billing\MeteredFeature
      */
     public static function meteredFeature(string $name, $id, $value = 0)
     {
@@ -85,7 +85,7 @@ class Saas
      * @param  string  $name
      * @param  float  $price
      * @param  string  $currency
-     * @return \OctoBilling\Item
+     * @return \Octo\Billing\Item
      */
     public static function item($id, string $name, float $price = 0.00, string $currency = 'EUR')
     {
@@ -112,7 +112,7 @@ class Saas
      * Apply the feature usage sync via callback.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $subscription
-     * @param  \OctoBilling\Feature  $feature
+     * @param  \Octo\Billing\Feature  $feature
      * @return int|float|null
      */
     public static function applyFeatureUsageSync(Model $subscription, Feature $feature)
@@ -170,8 +170,8 @@ class Saas
     /**
      * Get a specific plan by id or by yearly ID.
      *
-     * @param  \OctoBilling\Plan|string|int|null  $plan
-     * @return \OctoBilling\Plan|null
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
+     * @return \Octo\Billing\Plan|null
      */
     public static function getPlan($plan)
     {
@@ -197,8 +197,8 @@ class Saas
     /**
      * Get a free plan.
      *
-      * @param  \OctoBilling\Plan|string|int|null  $plan
-     * @return \OctoBilling\Plan|null
+      * @param  \Octo\Billing\Plan|string|int|null  $plan
+     * @return \Octo\Billing\Plan|null
      */
     public static function getFreePlan()
     {
@@ -210,8 +210,8 @@ class Saas
     /**
      * Get a specific item by id.
      *
-     * @param  \OctoBilling\Item|string|int  $item
-     * @return \OctoBilling\Item|null
+     * @param  \Octo\Billing\Item|string|int  $item
+     * @return \Octo\Billing\Item|null
      */
     public static function getItem($item)
     {

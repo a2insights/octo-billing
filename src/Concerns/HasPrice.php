@@ -1,8 +1,8 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
-use OctoBilling\Saas;
+use Octo\Billing\Saas;
 
 trait HasPrice
 {

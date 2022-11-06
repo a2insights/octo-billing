@@ -1,15 +1,15 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
-use OctoBilling\Saas;
+use Octo\Billing\Saas;
 
 trait HasPlans
 {
     /**
      * Get the plan this instance belongs to.
      *
-     * @return \OctoBilling\Plan
+     * @return \Octo\Billing\Plan
      */
     public function getPlan()
     {

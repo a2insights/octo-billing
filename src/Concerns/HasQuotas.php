@@ -1,12 +1,12 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
 use Closure;
-use OctoBilling\Feature;
-use OctoBilling\MeteredFeature;
-use OctoBilling\Models\Usage;
-use OctoBilling\Saas;
+use Octo\Billing\Feature;
+use Octo\Billing\MeteredFeature;
+use Octo\Billing\Models\Usage;
+use Octo\Billing\Saas;
 
 trait HasQuotas
 {
@@ -25,11 +25,11 @@ trait HasQuotas
     /**
      * Increment the feature usage.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
+     * @param  \Octo\Billing\Feature|string|int  $feature
      * @param  int|float  $value
      * @param  bool  $incremental
      * @param  Closure|null  $exceedHandler
-     * @return \OctoBilling\Models\Usage|null
+     * @return \Octo\Billing\Models\Usage|null
      */
     public function recordFeatureUsage($feature, $value = 1, bool $incremental = true, Closure $exceedHandler = null)
     {
@@ -40,7 +40,7 @@ trait HasQuotas
             return;
         }
 
-        /** @var \OctoBilling\Models\Usage $usage */
+        /** @var \Octo\Billing\Models\Usage $usage */
         $usage = $this->usage()->firstOrNew([
             'subscription_id' => $this->getKey(),
             'feature_id' => $feature,
@@ -100,13 +100,13 @@ trait HasQuotas
     /**
      * Reduce the usage amount.
      *
-     * @param  \OctoBilling\Feature|string|int  $id
+     * @param  \Octo\Billing\Feature|string|int  $id
      * @param  int|float  $uses
-     * @return null|\OctoBilling\Models\Usage
+     * @return null|\Octo\Billing\Models\Usage
      */
     public function reduceFeatureUsage($feature, $uses = 1, bool $incremental = true)
     {
-        /** @var \OctoBilling\Models\Usage|null $usage */
+        /** @var \Octo\Billing\Models\Usage|null $usage */
         $feature = $this->getPlan()->getFeature($feature);
 
         $usage = $this->usage()
@@ -135,9 +135,9 @@ trait HasQuotas
     /**
      * Reduce the usage amount.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
+     * @param  \Octo\Billing\Feature|string|int  $feature
      * @param  int|float  $uses
-     * @return null|\OctoBilling\Models\Usage
+     * @return null|\Octo\Billing\Models\Usage
      */
     public function decrementFeatureUsage($feature, $uses = 1, bool $incremental = true)
     {
@@ -147,9 +147,9 @@ trait HasQuotas
     /**
      * Set the feature usage to a specific value.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
+     * @param  \Octo\Billing\Feature|string|int  $feature
      * @param  int|float  $value
-     * @return \OctoBilling\Models\Usage|null
+     * @return \Octo\Billing\Models\Usage|null
      */
     public function setFeatureUsage($feature, $value)
     {
@@ -159,12 +159,12 @@ trait HasQuotas
     /**
      * Get the feature used quota.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
+     * @param  \Octo\Billing\Feature|string|int  $feature
      * @return int|float
      */
     public function getUsedQuota($feature)
     {
-        /** @var \OctoBilling\Models\Usage|null $usage */
+        /** @var \Octo\Billing\Models\Usage|null $usage */
         $usage = $this->usage()
             ->whereFeatureId($feature)
             ->first();
@@ -175,12 +175,12 @@ trait HasQuotas
     /**
      * Get the feature used total quota.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
+     * @param  \Octo\Billing\Feature|string|int  $feature
      * @return int|float
      */
     public function getTotalUsedQuota($feature)
     {
-        /** @var \OctoBilling\Models\Usage|null $usage */
+        /** @var \Octo\Billing\Models\Usage|null $usage */
         $usage = $this->usage()
             ->whereFeatureId($feature)
             ->first();
@@ -191,8 +191,8 @@ trait HasQuotas
     /**
      * Get the feature quota remaining.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return int|float
      */
     public function getRemainingQuota($feature, $plan = null)
@@ -209,9 +209,9 @@ trait HasQuotas
     /**
      * Get the feature quota remaining.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @param  \OctoBilling\Models\Usage  $usage
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @param  \Octo\Billing\Models\Usage  $usage
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return int|float
      */
     public function getRemainingQuotaFor($feature, $usage, $plan = null)
@@ -228,8 +228,8 @@ trait HasQuotas
     /**
      * Get the feature quota.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return int|float
      */
     public function getFeatureQuota($feature, $plan = null)
@@ -248,8 +248,8 @@ trait HasQuotas
     /**
      * Check if the feature is over the assigned quota.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return bool
      */
     public function featureOverQuota($feature, $plan = null): bool
@@ -268,9 +268,9 @@ trait HasQuotas
     /**
      * Check if the feature is over the assigned quota.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @param  \OctoBilling\Models\Usage  $usage
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @param  \Octo\Billing\Models\Usage  $usage
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return bool
      */
     public function featureOverQuotaFor($feature, $usage, $plan = null): bool
@@ -291,7 +291,7 @@ trait HasQuotas
      * if the current subscription would be swapped
      * to a new one.
      *
-     * @param  \OctoBilling\Plan|string|int|null  $plan
+     * @param  \Octo\Billing\Plan|string|int|null  $plan
      * @return \Illuminate\Support\Collection
      */
     public function featuresOverQuotaWhenSwapping($plan)

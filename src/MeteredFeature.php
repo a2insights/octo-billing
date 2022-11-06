@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling;
+namespace Octo\Billing;
 
 class MeteredFeature extends Feature
 {

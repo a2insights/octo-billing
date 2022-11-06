@@ -1,8 +1,8 @@
 <?php
 
-namespace OctoBilling;
+namespace Octo\Billing;
 
-class OctoBilling
+class Billing
 {
     use Concerns\ResolvesActions;
     use Concerns\ResolvesAuthorization;

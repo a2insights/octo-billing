@@ -1,10 +1,10 @@
 <?php
 
-namespace OctoBilling\Models;
+namespace Octo\Billing\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OctoBilling\Feature;
-use OctoBilling\Saas;
+use Octo\Billing\Feature;
+use Octo\Billing\Saas;
 
 class Usage extends Model
 {
@@ -27,7 +27,7 @@ class Usage extends Model
      * Recalculate the usage values based on the user-defined callbacks.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $subscription
-     * @param  \OctoBilling\Feature  $feature
+     * @param  \Octo\Billing\Feature  $feature
      * @return self
      */
     public function recalculate(Model $subscription, Feature $feature)

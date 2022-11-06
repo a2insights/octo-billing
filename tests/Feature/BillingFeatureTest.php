@@ -1,13 +1,13 @@
 <?php
 
-namespace OctoBilling\Tests\Feature;
+namespace Octo\Billing\Tests\Feature;
 
 use Carbon\Carbon;
 use Laravel\Cashier\Subscription;
-use OctoBilling\Feature;
-use OctoBilling\Saas;
-use OctoBilling\Tests\Models\User;
-use OctoBilling\Tests\TestCase;
+use Octo\Billing\Feature;
+use Octo\Billing\Saas;
+use Octo\Billing\Tests\Models\User;
+use Octo\Billing\Tests\TestCase;
 use Stripe\ApiResource;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\Stripe;

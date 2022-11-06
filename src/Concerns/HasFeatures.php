@@ -1,10 +1,10 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
-use OctoBilling\Feature;
-use OctoBilling\MeteredFeature;
-use OctoBilling\Plan;
+use Octo\Billing\Feature;
+use Octo\Billing\MeteredFeature;
+use Octo\Billing\Plan;
 
 trait HasFeatures
 {
@@ -33,7 +33,7 @@ trait HasFeatures
     /**
      * Inherit features from another plan.
      *
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return self
      */
     public function inheritFeaturesFromPlan(Plan $plan, array $features = [])
@@ -73,8 +73,8 @@ trait HasFeatures
     /**
      * Get a specific feature by id.
      *
-     * @param  \OctoBilling\Feature|string|int  $feature
-     * @return \OctoBilling\Feature|null
+     * @param  \Octo\Billing\Feature|string|int  $feature
+     * @return \Octo\Billing\Feature|null
      */
     public function getFeature($feature)
     {

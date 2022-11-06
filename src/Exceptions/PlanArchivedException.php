@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling\Exceptions;
+namespace Octo\Billing\Exceptions;
 
 use Exception;
 

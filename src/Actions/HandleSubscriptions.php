@@ -1,10 +1,10 @@
 <?php
 
-namespace OctoBilling\Actions;
+namespace Octo\Billing\Actions;
 
-use OctoBilling\OctoBilling;
-use OctoBilling\Contracts\HandleSubscriptions as HandleSubscriptionsContract;
-use OctoBilling\Plan;
+use Octo\Billing;
+use Octo\Billing\Contracts\HandleSubscriptions as HandleSubscriptionsContract;
+use Octo\Billing\Plan;
 
 class HandleSubscriptions implements HandleSubscriptionsContract
 {
@@ -12,7 +12,7 @@ class HandleSubscriptions implements HandleSubscriptionsContract
      * Mutate the checkout object before redirecting the user to subscribe to a certain plan.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return mixed
      */
     public function checkoutOnSubscription($subscription, $billable, Plan $plan)
@@ -27,7 +27,7 @@ class HandleSubscriptions implements HandleSubscriptionsContract
      * Subscribe the user to a given plan.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return void
      */
     public function subscribeToPlan($billable, Plan $plan)
@@ -52,14 +52,14 @@ class HandleSubscriptions implements HandleSubscriptionsContract
     /**
      * Swap the current subscription plan.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return void
      */
     public function swapToPlan($subscription, $billable, Plan $plan)
     {
-        if (OctoBilling::proratesOnSwap()) {
+        if (Billing::proratesOnSwap()) {
             $subscription->swap($plan->getId());
         } else {
             $subscription->noProrate()->swap($plan->getId());
@@ -69,7 +69,7 @@ class HandleSubscriptions implements HandleSubscriptionsContract
     /**
      * Define the logic to be called when the user requests resuming a subscription.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
      * @return void
      */
@@ -81,7 +81,7 @@ class HandleSubscriptions implements HandleSubscriptionsContract
     /**
      * Define the subscriptioncancellation action.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
      * @return void
      */

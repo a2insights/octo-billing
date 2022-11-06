@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling\Http\Controllers;
+namespace Octo\Billing\Http\Controllers;
 
 use Laravel\Cashier\Http\Controllers\WebhookController;
 

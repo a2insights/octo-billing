@@ -1,9 +1,9 @@
 <?php
 
-namespace OctoBilling\Tests\Feature;
+namespace Octo\Billing\Tests\Feature;
 
-use OctoBilling\Saas;
-use OctoBilling\Tests\TestCase;
+use Octo\Billing\Saas;
+use Octo\Billing\Tests\TestCase;
 
 class ItemTest extends TestCase
 {

@@ -1,9 +1,8 @@
 <?php
 
-namespace OctoBilling\Contracts;
+namespace Octo\Billing\Contracts;
 
-use Illuminate\Http\Request;
-use OctoBilling\Plan;
+use Octo\Billing\Plan;
 
 interface HandleSubscriptions
 {
@@ -11,7 +10,7 @@ interface HandleSubscriptions
      * Mutate the checkout object before redirecting the user to subscribe to a certain plan.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return mixed
      */
     public function checkoutOnSubscription($subscription, $billable, Plan $plan);
@@ -20,7 +19,7 @@ interface HandleSubscriptions
      * Subscribe the user to a given plan.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
+     * @param  \Octo\Billing\Plan  $plan
      * @return void
      */
     public function subscribeToPlan($billable, Plan $plan);
@@ -28,17 +27,17 @@ interface HandleSubscriptions
     /**
      * Swap the current subscription plan.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
-     * @param  \OctoBilling\Plan  $plan
-     * @return \OctoBilling\Models\Subscription
+     * @param  \Octo\Billing\Plan  $plan
+     * @return \Octo\Billing\Models\Subscription
      */
     public function swapToPlan($subscription, $billable, Plan $plan);
 
     /**
      * Define the logic to be called when the user requests resuming a subscription.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
      * @return void
      */
@@ -47,7 +46,7 @@ interface HandleSubscriptions
     /**
      * Define the subscriptioncancellation action.
      *
-     * @param  \OctoBilling\Models\Subscription  $subscription
+     * @param  \Octo\Billing\Models\Subscription  $subscription
      * @param  \Illuminate\Database\Eloquent\Model  $billable
      * @return void
      */

@@ -1,11 +1,11 @@
 <?php
 
-namespace OctoBilling\Tests\Models;
+namespace Octo\Billing\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
-use OctoBilling\Tests\database\factories\UserFactory;
+use Octo\Billing\Tests\database\factories\UserFactory;
 
 class User extends Authenticatable
 {

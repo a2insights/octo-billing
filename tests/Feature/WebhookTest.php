@@ -1,11 +1,11 @@
 <?php
 
-namespace OctoBilling\Tests\Feature;
+namespace Octo\Billing\Tests\Feature;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use OctoBilling\Saas;
-use OctoBilling\Tests\Models\User;
-use OctoBilling\Tests\TestCase;
+use Octo\Billing\Saas;
+use Octo\Billing\Tests\Models\User;
+use Octo\Billing\Tests\TestCase;
 
 class WebhookTest extends TestCase
 {

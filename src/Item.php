@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling;
+namespace Octo\Billing;
 
 use Illuminate\Contracts\Support\Arrayable;
 

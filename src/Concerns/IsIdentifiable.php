@@ -1,6 +1,6 @@
 <?php
 
-namespace OctoBilling\Concerns;
+namespace Octo\Billing\Concerns;
 
 trait IsIdentifiable
 {
