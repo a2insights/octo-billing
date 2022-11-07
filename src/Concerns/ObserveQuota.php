@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 trait ObserveQuota
 {
-    protected static function booted()
+    protected static function bootObserveQuota()
     {
-        parent::booted();
-
         static::creating(function ($model) {
             $user = Auth::user();
 

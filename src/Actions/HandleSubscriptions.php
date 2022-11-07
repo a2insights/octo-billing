@@ -2,7 +2,7 @@
 
 namespace Octo\Billing\Actions;
 
-use Octo\Billing;
+use Octo\Billing\Billing;
 use Octo\Billing\Contracts\HandleSubscriptions as HandleSubscriptionsContract;
 use Octo\Billing\Plan;
 
