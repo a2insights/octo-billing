@@ -1,6 +1,6 @@
 <?php
 
-namespace Octo;
+namespace Octo\Billing\Concerns;
 
 use Illuminate\Support\Facades\Auth;
 
