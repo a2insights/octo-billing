@@ -155,6 +155,13 @@ class Saas
         return collect(static::$plans);
     }
 
+    public static function getDefaultPlan()
+    {
+        return static::getPlans()->filter(function ($plan) {
+            return $plan->isDefault();
+        })->first();
+    }
+
     /**
      * Get the available plans.
      *

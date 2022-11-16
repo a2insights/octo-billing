@@ -12,6 +12,8 @@ class Plan implements Arrayable
     use Concerns\HasFeatures;
     use Concerns\HasPrice;
 
+    protected $default = false;
+
     /**
      * The yearly instance price.
      *
@@ -93,6 +95,29 @@ class Plan implements Arrayable
         return $this->getPrice();
     }
 
+    // is default
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    public function default()
+    {
+        $plans = Saas::getPlans();
+
+        $default = $plans->filter(function ($plan) {
+            return $plan->isDefault();
+        })->first();
+
+        if($default) {
+            throw new \Exception('Default plan already exists');
+        } else {
+            $this->default = true;
+        }
+
+        return $this;
+    }
+
     /**
      * Get the yearly price of the plan.
      *
@@ -115,6 +140,7 @@ class Plan implements Arrayable
             'yearlyId' => $this->getYearlyId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'default' => $this->isDefault(),
             'price' => $this->getMonthlyPrice(),
             'monthly_price' => $this->getMonthlyPrice(),
             'yearly_price' => $this->getYearlyPrice(),

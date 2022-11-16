@@ -2,16 +2,14 @@
 
 namespace Octo\Billing\Concerns;
 
-use Illuminate\Support\Facades\Auth;
-
 trait ObserveQuota
 {
+    abstract public function subscriptionTarget();
+
     protected static function bootObserveQuota()
     {
         static::creating(function ($model) {
-            $user = Auth::user();
-
-            $subscription = $user?->currentSubscription;
+            $subscription = $model->subscriptionTarget();
 
             if (!$subscription) {
                 return;
@@ -31,9 +29,7 @@ trait ObserveQuota
 
 
         static::created(function ($model) {
-            $user = Auth::user();
-
-            $subscription = $user?->currentSubscription;
+             $subscription = $model->subscriptionTarget();
 
             if (!$subscription) {
                 return;
@@ -50,9 +46,7 @@ trait ObserveQuota
         });
 
         static::deleted(function ($model) {
-            $user = Auth::user();
-
-            $subscription = $user?->currentSubscription;
+             $subscription = $model->subscriptionTarget();
 
             if (!$subscription) {
                 return;
