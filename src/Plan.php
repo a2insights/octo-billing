@@ -110,10 +110,10 @@ class Plan implements Arrayable
         })->first();
 
         if($default) {
-            throw new \Exception('Default plan already exists');
-        } else {
-            $this->default = true;
+           return $this;
         }
+        
+        $this->default = true;
 
         return $this;
     }
