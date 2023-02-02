@@ -30,7 +30,7 @@ class Feature implements Arrayable
     /**
      * The callback to call when syncing the current usage.
      *
-     * @var array[Closure]
+     * @var string|Closure
      */
     protected $calcule;
 
@@ -51,7 +51,7 @@ class Feature implements Arrayable
      * @param null|Closure  $calcule
      * @return void
      */
-    public function __construct(string $name, $id, $value = 0, $model = null, Closure $calcule = null)
+    public function __construct(string $name, $id, $value = 0, $model = null, Closure|string $calcule = null)
     {
         $this->name($name);
         $this->id($id);
@@ -59,6 +59,31 @@ class Feature implements Arrayable
         $this->model($model);
         $this->calcule = $calcule;
     }
+
+    // static create from array
+    public static function createFromArray(array $data)
+    {
+        $calcule = null;
+
+        if(is_string(@$data['calcule'])) {
+            eval('$calcule = ' . $data['calcule'] . ';');
+
+            $data['calcule'] = $calcule;
+        }
+
+        $feature = new Feature($data['name'], $data['id'], $data['value'], $data['model'], $data['calcule']);
+
+        if(!$data['resettable']) {
+            $feature->notResettable();
+        }
+
+        if($data['unlimited']) {
+            $feature->unlimited();
+        }
+
+        return $feature;
+    }
+
 
     /*
     *  Get the feature mode.
@@ -142,6 +167,15 @@ class Feature implements Arrayable
             return  $this->calcule->__invoke($model);
         }
 
+        // string
+        if (is_string($this->calcule)) {
+            $calcule = null;
+
+            eval('$calcule = ' . $this->calcule . ';');
+
+            return $calcule($model);
+        }
+
         return 1;
     }
 
@@ -174,12 +208,14 @@ class Feature implements Arrayable
     {
         return [
             'id' => $this->getId(),
+            'model' => $this->getModel(),
             'name' => $this->getName(),
             'model' => $this->getModel(),
             'description' => $this->getDescription(),
             'value' => $this->isUnlimited() ? '∞' : $this->getValue(),
             'unlimited' => $this->isUnlimited(),
             'resettable' => $this->isResettable(),
+            'calcule' => $this->calcule,
         ];
     }
 
