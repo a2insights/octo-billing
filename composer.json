@@ -20,15 +20,15 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "ext-json": "*",
         "doctrine/dbal": "^3.3",
-        "illuminate/support": "^8.80",
+        "illuminate/support": "^9.0",
         "laravel/cashier": "^13.0",
         "livewire/livewire": "^2.7"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0",
+        "orchestra/testbench-core": "^8.0",
         "phpunit/phpunit": "^9.3"
     },
     "suggest": {
