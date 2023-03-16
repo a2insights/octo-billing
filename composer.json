@@ -24,7 +24,7 @@
         "ext-json": "*",
         "doctrine/dbal": "^3.3",
         "illuminate/support": "^9.0",
-        "laravel/cashier": "^13.0",
+        "laravel/cashier": "^14.0",
         "livewire/livewire": "^2.7"
     },
     "require-dev": {
