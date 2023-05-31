@@ -23,9 +23,8 @@
         "php": "^8.0.2",
         "ext-json": "*",
         "doctrine/dbal": "^3.3",
-        "illuminate/support": "^9.0",
-        "laravel/cashier": "^14.0",
-        "livewire/livewire": "^2.7"
+        "illuminate/support": "^9.21|^10.0",
+        "laravel/cashier": "^14.12"
     },
     "require-dev": {
         "orchestra/testbench-core": "^8.0",
