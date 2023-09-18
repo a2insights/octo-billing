@@ -25,7 +25,5 @@ class BillingServiceProvider extends ServiceProvider
         }
 
         Billing::handleSubscriptionsUsing(HandleSubscriptions::class);
-
-        Saas::currency(config('octo-billing.currency', 'BRL'));
     }
 }
