@@ -20,6 +20,7 @@ class HandleSubscriptions implements HandleSubscriptionsContract
         return $subscription->checkout([
             'success_url' => config('octo-billing.subscription_index'),
             'cancel_url' => config('octo-billing.subscription_index'),
+            'allow_promotion_codes' => config('octo-billing.allow_promotion_codes'),
         ]);
     }
 
